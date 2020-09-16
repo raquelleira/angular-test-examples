@@ -1,0 +1,48 @@
+<button mat-flat-button
+        color="accent"
+        (click)="showTotals = !showTotals"
+        id="showTotalsButton"><span *ngIf="!showTotals">Show</span><span *ngIf="showTotals">Hide</span> Totals</button>
+<div [formGroup]="form">
+    <mat-form-field>
+        <mat-label>Item</mat-label>
+        <input matInput
+               type="text"
+               formControlName="item"
+               id="itemInput">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Item Description</mat-label>
+        <input matInput
+               type="text"
+               formControlName="description"
+               id="descriptionInput">
+    </mat-form-field>
+</div>
+<div>
+    <button mat-flat-button
+            color="accent"
+            (click)="save()"
+            id="saveButton"
+            [disabled]="form?.invalid">Save</button>
+    <button mat-flat-button
+            color="primary"
+            (click)="cancel()"
+            id="cancelButton">Cancel</button>
+</div>
+<div *ngIf="items?.length > 0"
+     id="itemsContainer">
+    <ul>
+        <li *ngFor="let item of items"
+            class="itemDisplay">
+            {{item.item}} - {{item.description}}
+        </li>
+    </ul>
+    <button mat-flat-button
+            color="accent"
+            (click)="clear()"
+            id="clearAllButton">Clear All</button>
+</div>
+<div id="totals"
+     *ngIf="showTotals">
+    <app-totals [totals]="items?.length"></app-totals>
+</div>

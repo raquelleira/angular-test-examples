@@ -1,0 +1,6 @@
+<h1 class="title">{{ title }}</h1>
+<button *ngIf="title !== 'Loading...'"
+        mat-flat-button
+        color="primary"
+        (click)="changeTheTitle();"
+        id="clearAllButton">Change the title!</button>
